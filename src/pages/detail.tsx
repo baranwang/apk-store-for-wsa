@@ -28,7 +28,7 @@ export const DetailPage = () => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.hd}>
+      <Section className={styles.hd}>
         <Image src={data.iconUrl} width={96} height={96} />
         <Text className={styles.title} variant="xxLarge" block>
           {data.appName}
@@ -45,7 +45,7 @@ export const DetailPage = () => {
           ))}
         </div>
         <DefaultButton>{data.categoryName}</DefaultButton>
-      </div>
+      </Section>
       <div className={styles.bd}>
         <Section title="屏幕截图">
           <Swiper
@@ -60,6 +60,13 @@ export const DetailPage = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+        </Section>
+        <Section title='描述'>
+          {data.description.split('\n').map((item, i) => (
+            <Text key={i} block>
+              {item}
+            </Text>
+          ))}
         </Section>
       </div>
     </div>

@@ -1,6 +1,9 @@
 .section {
   border: 1px solid #ddd;
   border-radius: 8px;
+  & + & {
+    margin-top: 8px;
+  }
   &-title {
     border-bottom: 1px solid #ddd;
     display: flex;

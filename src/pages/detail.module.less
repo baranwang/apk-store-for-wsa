@@ -5,19 +5,22 @@
 }
 
 .hd {
-  display: flex;
   height: 100%;
-  flex-direction: column;
-  align-items: center;
   flex: 0 0 320px;
-  padding: 48px;
   box-sizing: border-box;
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .bd {
   flex: auto;
-  width: calc(100% - 320px);
+  width: calc(100% - 328px);
   box-sizing: border-box;
+  margin-left: 8px;
+  overflow-y: auto;
 }
 
 .title {
