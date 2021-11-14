@@ -1,0 +1,15 @@
+.search-box {
+  padding: 0 16px;
+  &-keyword {
+    margin-top: 16px;
+    &:empty {
+      display: none;
+    }
+    &::before {
+      content: '搜索：“';
+    }
+    &::after {
+      content: '”';
+    }
+  }
+}

@@ -3,6 +3,10 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background-color: #eee;
+  padding-top: 48px;
+  box-sizing: border-box;
+  padding-left: 160px;
 }
 
 #root {
@@ -10,4 +14,19 @@ body {
   height: 100%;
   padding: 8px;
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .4);
+  background-clip: content-box;
+  min-height: 32px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
 }

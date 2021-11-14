@@ -2,6 +2,16 @@ interface MyappListResponse {
   obj: { appList: MyAppItem[]; contextData: string };
 }
 
+interface SearchMyappResponse {
+  obj?: {
+    dataList: {
+      type: number;
+      appInfo: MyAppItem;
+    }[];
+    contextData: string;
+  };
+}
+
 interface MyappDetailResponse {
   obj: { appInfo: MyAppItem };
 }
