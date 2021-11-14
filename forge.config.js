@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   packagerConfig: {
     icon: path.resolve('src', 'assets', 'icon.png'),
+    asar: true,
   },
   makers: [
     {
@@ -41,5 +42,17 @@ module.exports = {
         },
       },
     ],
+  ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'baranwang',
+          name: 'windows-android-store',
+        },
+        prerelease: true,
+      },
+    },
   ],
 };
