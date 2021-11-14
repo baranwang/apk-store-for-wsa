@@ -1,0 +1,35 @@
+name: Build Windows Android Store
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+    - name: Check out git repository
+      uses: actions/checkout@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+
+    - name: Download Platform Tools
+      uses: carlosperate/download-file-action@v1.0.3
+      with:
+        file-url: 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip'
+        file-name: 'platform-tools-latest-windows.zip'
+        location: './src/assets'
+    
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Publish
+      run: npm run publish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
