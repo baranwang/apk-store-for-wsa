@@ -1,13 +1,14 @@
 const path = require('path');
+const fs = require('fs');
 
 module.exports = {
   packagerConfig: {
-    icon: path.resolve('src', 'assets', 'icon.ico'),
+    icon: path.resolve('resources', 'icon.ico'),
     asar: true,
   },
   makers: [
     {
-      name: '@imxeno/electron-forge-maker-nsis'
+      name: '@imxeno/electron-forge-maker-nsis',
     },
   ],
   plugins: [
@@ -40,4 +41,16 @@ module.exports = {
       },
     },
   ],
+  hooks: {
+    postPackage(forgeConfig, options) {
+      fs.copyFileSync(
+        path.resolve('resources', 'platform-tools-latest-windows.zip'),
+        path.resolve(
+          options.outputPaths[0],
+          'resources',
+          'platform-tools-latest-windows.zip'
+        )
+      );
+    },
+  },
 };

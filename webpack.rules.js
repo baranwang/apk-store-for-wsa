@@ -45,4 +45,13 @@ module.exports = [
       { loader: 'less-loader' },
     ],
   },
+  {
+    test: /\.zip$/,
+    use: {
+      loader: 'file-loader',
+      options: {
+        name: '[path][name].[ext]',
+      }
+    }
+  }
 ];

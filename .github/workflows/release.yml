@@ -34,7 +34,7 @@ jobs:
         with:
           file-url: 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip'
           file-name: 'platform-tools-latest-windows.zip'
-          location: './src/assets'
+          location: './resources'
 
       - name: Install Dependencies
         run: yarn install

@@ -20,7 +20,6 @@ const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     height: 800,
     width: 1200,
-    icon: path.resolve(__dirname, '..', 'assets', 'icon.ico'),
     titleBarStyle: 'hidden',
     titleBarOverlay: {
       color: '#eee',
@@ -90,7 +89,7 @@ app.whenReady().then(() => {
   });
 
   createReadStream(
-    path.resolve(__dirname, '..', 'assets', 'platform-tools-latest-windows.zip')
+    path.resolve('resources', 'platform-tools-latest-windows.zip')
   ).pipe(unzipper.Extract({ path: app.getPath('userData') }));
 });
 
