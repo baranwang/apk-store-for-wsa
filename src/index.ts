@@ -20,7 +20,7 @@ const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     height: 800,
     width: 1200,
-    icon: path.resolve(__dirname, '..', 'assets', 'icon.png'),
+    icon: path.resolve(__dirname, '..', 'assets', 'icon.ico'),
     titleBarStyle: 'hidden',
     titleBarOverlay: {
       color: '#eee',

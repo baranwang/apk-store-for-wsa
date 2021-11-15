@@ -2,27 +2,16 @@ const path = require('path');
 
 module.exports = {
   packagerConfig: {
-    icon: path.resolve('src', 'assets', 'icon.png'),
+    icon: path.resolve('src', 'assets', 'icon.ico'),
     asar: true,
   },
   makers: [
     {
-      name: '@electron-forge/maker-squirrel',
+      name: '@imxeno/electron-forge-maker-nsis',
       config: {
-        name: 'windows_android_store',
+        perMachine: true,
+        installerIcon:  path.resolve('src', 'assets', 'icon.ico'),
       },
-    },
-    {
-      name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
-    },
-    {
-      name: '@electron-forge/maker-deb',
-      config: {},
-    },
-    {
-      name: '@electron-forge/maker-rpm',
-      config: {},
     },
   ],
   plugins: [
@@ -49,7 +38,7 @@ module.exports = {
       config: {
         repository: {
           owner: 'baranwang',
-          name: 'windows-android-store',
+          name: 'apk-store-for-wsa',
         },
         prerelease: true,
       },
