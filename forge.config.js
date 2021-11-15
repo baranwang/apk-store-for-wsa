@@ -7,10 +7,9 @@ module.exports = {
   },
   makers: [
     {
-      name: '@imxeno/electron-forge-maker-nsis',
+      name: 'electron-forge-maker-nsis',
       config: {
-        perMachine: true,
-        installerIcon:  path.resolve('src', 'assets', 'icon.ico'),
+        targetArch: 'x64',
       },
     },
   ],
