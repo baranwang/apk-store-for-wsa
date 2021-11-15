@@ -25,7 +25,7 @@
     "productName": "APK Stroe for WSA",
     "nsis": {
       "oneClick": false,
-      "installerIcon": "./src/resources/icon.ico"
+      "installerIcon": "./resources/icon.ico"
     }
   },
   "devDependencies": {
