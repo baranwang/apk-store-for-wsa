@@ -7,10 +7,7 @@ module.exports = {
   },
   makers: [
     {
-      name: 'electron-forge-maker-nsis',
-      config: {
-        targetArch: 'x64',
-      },
+      name: '@imxeno/electron-forge-maker-nsis'
     },
   ],
   plugins: [

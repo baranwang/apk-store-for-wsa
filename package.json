@@ -13,18 +13,27 @@
   },
   "keywords": [],
   "author": {
-    "name": "baranwang",
+    "name": "Baran Wang",
     "email": "me@baran.wang"
   },
   "license": "MIT",
   "config": {
     "forge": "./forge.config.js"
   },
+  "build": {
+    "appId": "wang.baran.apk-store-for-wsa",
+    "productName": "APK Stroe for WSA",
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "./src/assets/icon.ico"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@electron-forge/cli": "^6.0.0-beta.61",
     "@electron-forge/plugin-webpack": "6.0.0-beta.61",
     "@electron-forge/publisher-github": "^6.0.0-beta.61",
+    "@imxeno/electron-forge-maker-nsis": "^6.0.1",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "@types/unzipper": "^0.10.4",
