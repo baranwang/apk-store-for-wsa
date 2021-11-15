@@ -1,4 +1,4 @@
-name: Build Windows Android Store
+name: Build APK Stroe for WSA
 
 on:
   push:
@@ -17,6 +17,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v1
       with:
+        always-auth: true
         node-version: 16.x
 
     - name: Get yarn cache directory path
