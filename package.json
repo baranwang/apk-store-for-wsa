@@ -1,6 +1,7 @@
 {
   "name": "windows-android-store",
   "productName": "Windows Android Store",
+  "description": "Windows Android Store",
   "version": "1.0.0",
   "main": ".webpack/main",
   "scripts": {
