@@ -2,7 +2,7 @@
   "name": "apk-store-for-wsa",
   "productName": "APK Stroe for WSA",
   "description": "APK Stroe for WSA (Windows Subsystem for Android)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
