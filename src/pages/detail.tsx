@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import SwiperCore, { Navigation, Mousewheel } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Section } from '@/components/Section';
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window;
 import { MessageBoxSyncOptions } from 'electron';
 
 import 'swiper/css';

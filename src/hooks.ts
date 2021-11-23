@@ -1,13 +1,10 @@
-import { dialog, ipcMain, net, shell } from 'electron';
+import { app, dialog, ipcMain, net, shell } from 'electron';
 import { URL } from 'url';
 import { exec } from 'child_process';
 import * as path from 'path';
 import * as fs from 'fs';
 
-export const hooks = (app: Electron.App): void => {
-  const getAdbBinPath = () =>
-    path.resolve(app.getPath('userData'), 'platform-tools', 'adb.exe');
-
+export const hooks = (): void => {
   ipcMain.handle('request', async (event, args) => {
     const url = new URL(args.url);
     Object.keys(args.params).forEach((key) => {
@@ -32,43 +29,6 @@ export const hooks = (app: Electron.App): void => {
         });
       });
       req.end();
-    });
-  });
-
-  ipcMain.handle('adb-connect', (event, args) => {
-    return new Promise((resolve, reject) => {
-      exec(
-        `${getAdbBinPath()} connect ${args || '127.0.0.1:58526'}`,
-        (error, stdout, stderr) => {
-          if (error || stderr) {
-            reject(error || stderr);
-          } else {
-            if (stdout.includes('cannot connect to')) {
-              reject(stdout);
-            } else {
-              resolve(stdout);
-            }
-          }
-        }
-      );
-    });
-  });
-
-  ipcMain.handle('adb-install', (event, args) => {
-    return new Promise((resolve, reject) => {
-      const command = `${getAdbBinPath()} install ${args}`;
-      console.log('[run]', command);
-      exec(command, (error, stdout, stderr) => {
-        if (error) {
-          reject(error);
-        } else {
-          if (stderr.includes('Success')) {
-            resolve(stderr);
-          } else {
-            reject(stderr);
-          }
-        }
-      });
     });
   });
 
@@ -115,8 +75,8 @@ export const hooks = (app: Electron.App): void => {
 
   ipcMain.handle('open-app', (event, args) => {
     const basePath = path.resolve(
-      app.getPath('appData'),
-      '..',
+      app.getPath('home'),
+      'AppData',
       'Local',
       'Microsoft',
       'WindowsApps'
@@ -124,7 +84,7 @@ export const hooks = (app: Electron.App): void => {
     const wsaPath = fs
       .readdirSync(basePath)
       .find((file) =>
-        file.includes('MicrosoftCorporationII.WindowsSubsystemForAndroid')
+        file.includes('WindowsSubsystemForAndroid')
       );
     const wsa = path.resolve(basePath, wsaPath, 'WsaClient.exe');
     exec(`"${wsa}" /launch wsa://"${args}"`);
@@ -146,6 +106,9 @@ export const hooks = (app: Electron.App): void => {
   });
 
   ipcMain.handle('show-message-box', (event, args) => {
-    dialog.showMessageBoxSync(args);
+    dialog.showMessageBoxSync({
+      title: app.getName(),
+      ...args
+    });
   });
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { DefaultButton, Nav as MsNav } from '@fluentui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
-const { ipcRenderer } = window.require('electron');
 import { installApk } from '@/api';
 
 import styles from './Nav.module.less';
@@ -83,7 +82,7 @@ export const Nav: React.FC = () => {
           text={installLoading ? '安装中…' : '导入 APK'}
           disabled={installLoading}
           onClick={() => {
-            ipcRenderer.invoke('select-apk').then((path) => {
+            window.ipcRenderer.invoke('select-apk').then((path) => {
               setInstallLoading(true);
               installApk(path).finally(() => {
                 setInstallLoading(false);

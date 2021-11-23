@@ -2,6 +2,8 @@ name: Build APK Stroe for WSA
 
 on:
   push:
+    tags:
+      - 'v*'
 
 permissions:
   contents: write

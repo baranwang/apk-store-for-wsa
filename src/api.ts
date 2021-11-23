@@ -1,5 +1,5 @@
 import { MessageBoxSyncOptions } from 'electron';
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window;
 
 export function request<T = any>(
   url: string,
@@ -42,9 +42,48 @@ export const getAppDetail = (pkgName: string) =>
     sceneId: 0,
   });
 
+const adbConnect = async (locaction = '127.0.0.1:58526') => {
+  const adbBinPath = await ipcRenderer.invoke('get-adb-bin-path')
+  return new Promise((resolve, reject) => {
+    window.exec(
+      `"${adbBinPath}" connect ${locaction}`,
+      (error, stdout, stderr) => {
+        if (error || stderr) {
+          reject(error || stderr);
+        } else {
+          if (stdout.includes('cannot connect to')) {
+            reject(stdout);
+          } else {
+            resolve(stdout);
+          }
+        }
+      }
+    );
+  });
+}
+
+const adbInstall = async (apkPath: string) => {
+  const adbBinPath = await ipcRenderer.invoke('get-adb-bin-path')
+  return new Promise((resolve, reject) => {
+    const command = `"${adbBinPath}" install ${apkPath}`;
+    console.log('[run]', command);
+    window.exec(command, (error, stdout, stderr) => {
+      if (error) {
+        reject(error);
+      } else {
+        if (stderr.includes('Success')) {
+          resolve(stderr);
+        } else {
+          reject(stderr);
+        }
+      }
+    });
+  });
+}
+
 export const installApk = async (apkPath: string) => {
   try {
-    await ipcRenderer.invoke('adb-connect');
+    await adbConnect()
   } catch (error) {
     throw ipcRenderer.invoke('show-message-box', {
       message: '安装失败',
@@ -53,7 +92,7 @@ export const installApk = async (apkPath: string) => {
   }
 
   try {
-    await ipcRenderer.invoke('adb-install', apkPath);
+    await adbInstall(apkPath);
   } catch (error) {
     console.error(error);
     throw ipcRenderer.invoke('show-message-box', {
